@@ -1,268 +1,158 @@
-# ◈ SYSATLAS
-### SYSTEMS OBSERVABILITY · RELIABILITY ENGINEERING · SYSTEMS SOFTWARE
+ <div align="center">
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=230&color=0:070B16,35:111C3B,70:3730A3,100:06B6D4&text=SYSATLAS&fontColor=F8FAFC&fontSize=68&fontAlignY=38&desc=FROM%20SYSTEM%20SIGNALS%20TO%20ENGINEERING%20INSIGHT&descAlignY=61&descSize=14&animation=fadeIn" width="100%" alt="SysAtlas premium project banner"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&height=220&text=SysAtlas&fontSize=76&fontColor=F8FAFC&desc=SYSTEMS%20RELIABILITY%20%2F%20OBSERVABILITY%20PLATFORM&descSize=16&descAlignY=70&color=0:070B16,45:111C3B,100:312E81&animation=fadeIn" alt="SysAtlas — Systems Reliability and Observability Platform" width="100%">
+
+<br>
+
+**A systems observability project connecting native Linux telemetry, a Python API, persistent storage, and alert evaluation.**
+
+<p>
+  <a href="https://github.com/akankshad1712/sysatlas"><img src="https://img.shields.io/badge/PROJECT-SysAtlas-6366F1?style=for-the-badge&logo=github&logoColor=white" alt="SysAtlas repository"></a>
+  <img src="https://img.shields.io/badge/LANGUAGE-C11-06B6D4?style=for-the-badge&logo=c&logoColor=white" alt="C11">
+  <img src="https://img.shields.io/badge/PYTHON-API-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/FASTAPI-REST-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/DATABASE-SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite">
 </p>
 
-<p align="center">
-  <strong>Observe the system. Understand the signals. Engineer for reliability.</strong>
-</p>
+[Overview](#-overview) · [Architecture](#-architecture) · [Data flow](#-data-flow) · [Quick start](#-quick-start) · [API](#-api-reference) · [Engineering](#-engineering-principles)
 
-<p align="center">
-  <a href="https://github.com/akankshad1712/sysatlas">
-    <img src="https://img.shields.io/badge/GITHUB-SOURCE-111827?style=for-the-badge&logo=github&logoColor=white" alt="Source repository"/>
-  </a>
-  <img src="https://img.shields.io/badge/C-C11-00599C?style=for-the-badge&logo=c&logoColor=white" alt="C"/>
-  <img src="https://img.shields.io/badge/PYTHON-APPLICATION-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-  <img src="https://img.shields.io/badge/FASTAPI-REST%20SERVICES-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
-  <img src="https://img.shields.io/badge/SQLITE-PERSISTENCE-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
-</p>
-
-<p align="center">
-  <a href="https://github.com/akankshad1712/sysatlas/tree/main/docs">ENGINEERING DOCUMENTATION</a>
-  &nbsp; ◆ &nbsp;
-  <a href="https://github.com/akankshad1712/sysatlas/tree/main/portfolio">PORTFOLIO MATERIAL</a>
-  &nbsp; ◆ &nbsp;
-  <a href="https://www.linkedin.com/in/akanksha-deshmukh-26210b244/">LINKEDIN</a>
-</p>
+</div>
 
 ---
 
-## 01 / Executive overview
+## ◈ Overview
 
-**SysAtlas is a Linux systems observability and reliability engineering project created by Akanksha Deshmukh.**
+**SysAtlas** is a systems-reliability and observability project designed to connect host-level telemetry with a service interface, persistent records, and alert evaluation.
 
-It explores how operating-system metrics can be collected through a native C component, passed across a Python application boundary, exposed through REST APIs, persisted in a local database, and evaluated against alert conditions.
+The project combines a native C collector that reads Linux `/proc` data with a Python/FastAPI application, SQLite persistence, automated checks, and a Docker-based development workflow.
 
-The project brings together systems programming, backend development, process management, structured data, automated testing, containerization, and operational documentation in one codebase.
+The engineering goal is straightforward: make the journey from system signals to application responses easier to understand, test, debug, and extend.
 
-The central engineering question is:
-
-> How can we transform low-level system signals into structured, accessible, and useful operational information?
-
-### At a glance
-
-| Dimension | Project details |
+| Project detail | Description |
 |---|---|
-| Project | SysAtlas |
-| Author | Akanksha Deshmukh |
-| Category | Systems observability and reliability engineering |
-| Systems component | C-based Linux collector |
-| Application layer | Python and FastAPI |
-| Persistence | SQLite |
-| Interfaces | HTTP and JSON |
-| Quality engineering | Pytest, shell tests, GitHub Actions configuration |
-| Deployment configuration | Docker and Docker Compose |
-| Documentation | Architecture, security, reliability, testing, and design records |
-| Source code | [GitHub repository](https://github.com/akankshad1712/sysatlas) |
+| **Project** | SysAtlas |
+| **Category** | Systems engineering, observability, backend development |
+| **Collector** | Native C |
+| **Operating-system interface** | Linux `/proc` |
+| **Application layer** | Python and FastAPI |
+| **Persistence** | SQLite |
+| **Testing** | Pytest and collector shell tests |
+| **Container workflow** | Docker and Docker Compose |
+| **CI configuration** | GitHub Actions workflow |
+| **Author** | Akanksha Deshmukh |
 
-## 02 / The visual language
+> **Core principle:** separate collection, service logic, persistence, and alert evaluation so each part can be understood and verified independently.
 
-SysAtlas uses a focused, high-contrast visual identity inspired by modern developer platforms and technical product interfaces.
+## ✦ Project highlights
 
-| Design token | Hex color | Intended use |
-|---|---|---|
-| Midnight | `#070B16` | Primary background |
-| Deep Navy | `#111C3B` | Main surfaces |
-| Electric Cyan | `#06B6D4` | Data flow and technical highlights |
-| Indigo | `#6366F1` | Application and service boundaries |
-| Violet | `#8B5CF6` | Architecture accents |
-| Mint | `#34D399` | Successful validation and healthy states |
-| Cloud White | `#F8FAFC` | Primary text |
-| Slate | `#94A3B8` | Secondary information |
+- **Native system collection:** uses C for the Linux telemetry collection component.
+- **API-driven interaction:** organizes application functionality around a FastAPI service.
+- **Persistent data:** uses SQLite through a dedicated database module.
+- **Alert evaluation:** keeps alert-related logic in a separate application module.
+- **Testing foundation:** includes application tests and collector-specific checks.
+- **Containerized workflow:** includes a Dockerfile and Docker Compose configuration.
+- **Engineering documentation:** provides a foundation for recording design decisions, risks, reliability concerns, and future improvements.
 
-The palette establishes a consistent visual direction. GitHub controls the actual page styling, so the colors are expressed through banners, diagrams, badges, and visual assets rather than arbitrary README CSS.
+## ◈ Architecture
 
-## 03 / The engineering challenge
-
-A monitoring pipeline is more than a metric collector. It needs a reliable way to move information between components, handle invalid output, expose useful interfaces, retain observations, and make failure conditions visible.
-
-SysAtlas organizes these concerns into a sequence of explicit engineering boundaries.
+The following diagram shows the project's high-level component relationships.
 
 ```mermaid
-flowchart TD
-    A(["LINUX HOST"]) --> B["Read supported system metrics"]
-    B --> C["Native C collector"]
-    C --> D["Python process adapter"]
-    D --> E{"Execution and output valid?"}
-    E -->|Yes| F["FastAPI application"]
-    E -->|No| G["Error handling and diagnostics"]
-    F --> H[("SQLite persistence")]
-    F --> I["Alert evaluation"]
-    I --> H
-    H --> J["Metric and alert retrieval"]
-    J --> K["HTTP clients"]
-    K --> L(["Operational visibility"])
+flowchart TB
+    HOST["Linux Host<br/>/proc telemetry"]
 
-    classDef host fill:#111827,stroke:#64748B,color:#F8FAFC
-    classDef collect fill:#082F49,stroke:#06B6D4,color:#ECFEFF
-    classDef service fill:#312E81,stroke:#818CF8,color:#EEF2FF
-    classDef data fill:#052E2B,stroke:#34D399,color:#ECFDF5
-    classDef error fill:#451A03,stroke:#F59E0B,color:#FFFBEB
+    COLLECTOR["Native C Collector<br/>collector/src/collector.c"]
 
-    class A,L host
-    class B,C,D collect
-    class F,I,J,K service
-    class H data
-    class E,G error
+    INTEGRATION["Collector Integration<br/>app/collector.py"]
+
+    API["Python + FastAPI<br/>app/main.py"]
+
+    DATABASE[("SQLite<br/>app/db.py")]
+
+    ALERTS["Alert Evaluation<br/>app/alerts.py"]
+
+    CLIENT["Developer / API Client"]
+
+    HEALTH["Health & Readiness<br/>Service endpoints"]
+
+    HOST --> COLLECTOR
+    COLLECTOR --> INTEGRATION
+    INTEGRATION --> API
+
+    CLIENT <--> API
+    API <--> DATABASE
+    API --> ALERTS
+    API --> HEALTH
+
+    classDef source fill:#111C3B,stroke:#6366F1,color:#F8FAFC,stroke-width:2px
+    classDef service fill:#0F172A,stroke:#06B6D4,color:#F8FAFC,stroke-width:2px
+    classDef storage fill:#102A2A,stroke:#34D399,color:#F8FAFC,stroke-width:2px
+    classDef client fill:#241B3B,stroke:#8B5CF6,color:#F8FAFC,stroke-width:2px
+
+    class HOST,COLLECTOR source
+    class INTEGRATION,API,ALERTS,HEALTH service
+    class DATABASE storage
+    class CLIENT client
 ```
 
-*Architecture illustration: the precise runtime behavior should be verified against the implementation.*
+### Component responsibilities
 
-### What each stage contributes
+| Component | Responsibility | Location |
+|---|---|---|
+| Native collector | Reads host telemetry from Linux `/proc` | `collector/src/collector.c` |
+| Collector integration | Connects collection functionality to the application | `app/collector.py` |
+| API application | Coordinates service behavior and HTTP routes | `app/main.py` |
+| Configuration | Centralizes application configuration | `app/config.py` |
+| Database layer | Handles SQLite persistence | `app/db.py` |
+| Alert module | Contains alert-evaluation logic | `app/alerts.py` |
+| Application tests | Tests application behavior | `tests/test_app.py` |
+| Collector tests | Checks collector-related behavior | `collector/tests/test_collector.sh` |
+| CI workflow | Defines automated checks | `.github/workflows/ci.yml` |
 
-| Stage | Input | Responsibility | Output |
-|---|---|---|---|
-| Collection | Linux system interfaces | Read supported operating-system metrics | Collector output |
-| Process boundary | Collector executable | Execute and manage the collection process | Process result |
-| Validation | Collector output | Check data before downstream use | Accepted data or error |
-| Application | Validated information | Coordinate API operations | Application responses |
-| Persistence | Metrics and alert records | Store and retrieve information | Historical records |
-| Alert evaluation | Observations and thresholds | Evaluate configured conditions | Alert-related records |
-| API access | HTTP requests | Make supported operations accessible | HTTP responses |
-
-## 04 / Architecture at a glance
+## ◈ Data flow
 
 ```mermaid
 flowchart LR
-    subgraph SYSTEM["01 · SYSTEM LAYER"]
-        PROC["Linux /proc"]
-        COLLECTOR["C collector"]
-        PROC --> COLLECTOR
-    end
+    A["01<br/>Linux host"] --> B["02<br/>C collector"]
+    B --> C["03<br/>Collection integration"]
+    C --> D["04<br/>FastAPI service"]
+    D --> E[("05<br/>SQLite")]
+    D --> F["06<br/>Alert evaluation"]
+    D --> G["07<br/>API response"]
 
-    subgraph APPLICATION["02 · APPLICATION LAYER"]
-        ADAPTER["Python adapter"]
-        VALIDATOR["Output validation"]
-        API["FastAPI"]
-        ADAPTER --> VALIDATOR --> API
-    end
+    classDef stage fill:#111C3B,stroke:#6366F1,color:#F8FAFC,stroke-width:2px
+    classDef data fill:#102A2A,stroke:#34D399,color:#F8FAFC,stroke-width:2px
 
-    subgraph STORAGE["03 · DATA LAYER"]
-        DB[("SQLite")]
-        METRICS["Metric history"]
-        EVENTS["Alert events"]
-        DB --> METRICS
-        DB --> EVENTS
-    end
-
-    subgraph ACCESS["04 · ACCESS LAYER"]
-        CLIENT["HTTP clients"]
-        DOCS["Interactive API docs"]
-    end
-
-    COLLECTOR --> ADAPTER
-    API <--> DB
-    CLIENT <--> API
-    DOCS -. "documents API" .-> API
-
-    classDef system fill:#082F49,stroke:#06B6D4,color:#ECFEFF
-    classDef app fill:#1E1B4B,stroke:#818CF8,color:#EEF2FF
-    classDef storage fill:#052E2B,stroke:#34D399,color:#ECFDF5
-    classDef access fill:#3B0764,stroke:#C084FC,color:#FAF5FF
-
-    class PROC,COLLECTOR system
-    class ADAPTER,VALIDATOR,API app
-    class DB,METRICS,EVENTS storage
-    class CLIENT,DOCS access
+    class A,B,C,D,F,G stage
+    class E data
 ```
 
-### Component ownership
+### How the workflow fits together
 
-| Component | File | Responsibility |
+1. **Collect:** the native collector reads available host signals from Linux `/proc`.
+2. **Integrate:** the application connects collection functionality to its service workflow.
+3. **Process:** FastAPI handles application requests and coordinates the relevant logic.
+4. **Persist:** the database layer manages supported SQLite operations.
+5. **Evaluate:** alert logic evaluates the relevant inputs and conditions.
+6. **Respond:** API clients interact with the service through its registered HTTP endpoints.
+
+The exact metrics, schemas, alert thresholds, and execution sequence should be confirmed against the current implementation before being treated as production guarantees.
+
+## ◈ Capability matrix
+
+| Area | Included project component | Engineering value |
 |---|---|---|
-| C collector | `collector/src/collector.c` | Linux-oriented system collection |
-| Python adapter | `app/collector.py` | Collector process integration |
-| Configuration | `app/config.py` | Application settings |
-| API | `app/main.py` | HTTP endpoints and application orchestration |
-| Database | `app/db.py` | Persistence and database operations |
-| Alert logic | `app/alerts.py` | Alert evaluation |
-| Application tests | `tests/test_app.py` | Python application tests |
-| Collector tests | `collector/tests/test_collector.sh` | Collector test script |
-| CI | `.github/workflows/ci.yml` | Automated workflow configuration |
-| Container build | `Dockerfile` | Container image configuration |
-| Container services | `docker-compose.yml` | Local service configuration |
+| System telemetry | Native C collector | Low-level systems programming |
+| Linux integration | `/proc` interface | Operating-system fundamentals |
+| API development | FastAPI application | Backend service design |
+| Data persistence | SQLite database layer | Storage and data management |
+| Alerting | Alert evaluation module | Condition-based processing |
+| Verification | Pytest and shell tests | Repeatable checks |
+| Container workflow | Dockerfile and Compose | Environment consistency |
+| Automation | GitHub Actions workflow | Continuous integration foundation |
+| Documentation | Engineering and project docs | Maintainability and knowledge sharing |
 
-## 05 / Feature matrix
-
-| Capability | Engineering value | Implementation |
-|---|---|---|
-| Native systems collection | Explore low-level Linux interfaces | C collector |
-| Process integration | Separate collection from application logic | Python adapter |
-| Output validation | Define a boundary between components | Collector integration |
-| REST API | Provide structured application access | FastAPI |
-| Metric persistence | Retain observations | SQLite |
-| Alert evaluation | Apply monitoring conditions | Alert module |
-| Automated tests | Detect regressions | Pytest and shell tests |
-| CI configuration | Automate selected checks | GitHub Actions |
-| Containerization | Define a repeatable runtime environment | Docker |
-| Engineering records | Explain technical decisions | `docs/engineering/` |
-| Operational guidance | Document reliability and response considerations | `docs/` |
-
-## 06 / API reference
-
-The following routes are present in the project's documented interface. Check `app/main.py` for the authoritative HTTP methods, schemas, parameters, and response codes.
-
-| Endpoint | Method | Intended operation |
-|---|---|---|
-| `/health` | GET | Application health check |
-| `/ready` | GET | Application readiness check |
-| `/api/v1/collect` | POST | Trigger metric collection |
-| `/api/v1/metrics` | GET | Retrieve metric observations |
-| `/api/v1/alerts` | GET | Retrieve alert information |
-
-### Explore the API
-
-When the application is running and FastAPI's documentation routes are enabled:
-
-- Interactive Swagger UI: `http://127.0.0.1:8000/docs`
-- ReDoc: `http://127.0.0.1:8000/redoc`
-
-Example PowerShell requests:
-
-```powershell
-Invoke-RestMethod http://127.0.0.1:8000/health
-Invoke-RestMethod http://127.0.0.1:8000/api/v1/metrics
-Invoke-RestMethod http://127.0.0.1:8000/api/v1/alerts
-```
-
-These examples assume the service listens on port `8000`. They do not establish that the application has been started or that the endpoints have been tested in the current environment.
-
-## 07 / Data and persistence model
-
-SQLite is used as the local persistence technology.
-
-```mermaid
-flowchart TD
-    INPUT["Collected observations"] --> VALIDATE["Application validation"]
-    VALIDATE --> STORE[("SQLite database")]
-    STORE --> QUERY["Metric query operations"]
-    STORE --> ALERTS["Alert evaluation and event operations"]
-    QUERY --> RESPONSE["API response"]
-    ALERTS --> RESPONSE
-
-    classDef input fill:#082F49,stroke:#06B6D4,color:#ECFEFF
-    classDef logic fill:#312E81,stroke:#818CF8,color:#EEF2FF
-    classDef database fill:#052E2B,stroke:#34D399,color:#ECFDF5
-
-    class INPUT input
-    class VALIDATE,QUERY,ALERTS,RESPONSE logic
-    class STORE database
-```
-
-| Data concern | Design objective |
-|---|---|
-| Metric records | Retain observations for retrieval |
-| Alert records | Preserve alert-related information |
-| Validation | Avoid passing malformed information into downstream processing |
-| Database lifecycle | Initialize and access storage consistently |
-| Growth | Consider retention, indexing, and query costs |
-| Reliability | Handle persistence failures explicitly |
-
-For the actual database schema, column definitions, transaction behavior, and initialization logic, refer to `app/db.py`.
-
-## 08 / Repository structure
+## ◈ Repository structure
 
 ```text
 sysatlas/
@@ -282,25 +172,8 @@ sysatlas/
 │   └── tests/
 │       └── test_collector.sh
 ├── docs/
-│   ├── engineering/
-│   ├── CAPACITY_PLANNING.md
-│   ├── ENGINEERING_AUDIT.md
-│   ├── ERROR_BUDGET.md
-│   ├── INCIDENT_RESPONSE.md
-│   ├── QUALITY_REPORT.md
-│   ├── SECURITY_ARCHITECTURE.md
-│   ├── SRE_PLAYBOOK.md
-│   ├── TECHNICAL_DEBT.md
-│   ├── TEST_MATRIX.md
-│   └── THREAT_MODEL.md
+│   └── engineering/
 ├── portfolio/
-│   ├── ARCHITECTURE_DEFENSE.md
-│   ├── DEMO_SCRIPT.md
-│   ├── GITHUB_ABOUT.md
-│   ├── INTERVIEW_QA.md
-│   ├── PROJECT_SUMMARY.md
-│   ├── RESUME_BULLETS.md
-│   └── TECHNICAL_WALKTHROUGH.md
 ├── tests/
 │   └── test_app.py
 ├── .env.example
@@ -316,35 +189,36 @@ sysatlas/
 └── SECURITY.md
 ```
 
-## 09 / Run locally
+## ◈ Quick start
 
 ### Prerequisites
 
 - Git
-- A compatible Python installation
-- Linux or WSL2 for the native Linux collector
-- A C compiler for building and testing the collector
-- Docker and Docker Compose for the containerized workflow
+- Python compatible with the versions and dependencies used by the project
+- A C compiler and Linux-compatible environment for collector-related work
+- Docker Desktop or Docker Engine if using Docker Compose
 
-### Clone the repository
+**Important:** the collector depends on Linux `/proc`. For Windows development, use WSL2 or a compatible Linux container for collector execution.
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/akankshad1712/sysatlas.git
 cd sysatlas
 ```
 
-### Install Python dependencies
+### 2. Create a virtual environment
 
 **Windows PowerShell**
 
 ```powershell
-python -m venv .venv
+py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-**Linux / WSL2**
+**Linux / macOS**
 
 ```bash
 python3 -m venv .venv
@@ -353,172 +227,161 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Run application tests
+### 3. Configure the environment
+
+Review `.env.example` and configure the variables required by the application.
+
+Keep real credentials, tokens, and private configuration out of source control.
+
+### 4. Run application tests
 
 ```bash
 python -m pytest -q
 ```
 
-### Run collector checks
+### 5. Run collector checks
 
-From a compatible Linux environment:
+In a compatible shell environment:
 
 ```bash
 sh collector/tests/test_collector.sh
 ```
 
-### Run with Docker Compose
+### 6. Start the containerized environment
 
 ```bash
 docker compose up --build
 ```
 
-To stop the services:
+Review the container output to identify the actual service startup status and configured port.
+
+To stop the environment:
 
 ```bash
 docker compose down
 ```
 
-**Important:** Confirm the build targets, startup commands, and service configuration in the repository before relying on these instructions. Running Python under Windows does not itself provide Linux `/proc` interfaces.
+**Verification note:** these commands are provided as the intended development workflow. Their success depends on the installed dependencies, environment configuration, platform, and current repository implementation. Run them locally to confirm.
 
-## 10 / Reliability and failure analysis
+## ◈ API reference
 
-A useful observability system needs to handle failure, not only successful collection.
+The following routes are the documented project endpoint names. Confirm their registered HTTP methods, schemas, and behavior in `app/main.py` before integrating with them.
+
+| Endpoint | Intended purpose |
+|---|---|
+| `/health` | Basic service-health information |
+| `/ready` | Readiness status |
+| `/api/v1/collect` | Collection workflow |
+| `/api/v1/metrics` | Metric access |
+| `/api/v1/alerts` | Alert access |
+
+### Interactive API documentation
+
+After starting the service, check whether FastAPI's OpenAPI documentation is enabled at:
+
+- `/docs`
+- `/redoc`
+
+These routes are available only if the application configuration exposes them. Use the actual local host and port reported by your running service.
+
+## ◈ Engineering principles
+
+SysAtlas is structured around a few practical software-engineering concerns.
+
+| Principle | Application in the project |
+|---|---|
+| **Separation of concerns** | Collection, configuration, API handling, persistence, and alert logic live in distinct modules. |
+| **Testability** | Application tests and collector checks provide places to verify behavior. |
+| **Maintainability** | Focused modules and engineering documentation help developers navigate changes. |
+| **Operational awareness** | Health-related endpoints and troubleshooting documentation support service inspection. |
+| **Security hygiene** | Environment examples, ignore rules, and security documentation support safer development practices. |
+| **Change management** | CI configuration, a changelog, and contribution guidance establish a foundation for disciplined updates. |
+
+## ◈ Troubleshooting flow
 
 ```mermaid
 flowchart TD
-    START["Collection request"] --> RUN["Execute collector"]
-    RUN --> RESULT{"Process succeeded?"}
-    RESULT -->|No| PROCESS_ERROR["Handle execution failure"]
-    RESULT -->|Yes| FORMAT{"Output valid?"}
-    FORMAT -->|No| DATA_ERROR["Reject invalid output"]
-    FORMAT -->|Yes| PERSIST["Persist observations"]
-    PERSIST --> DB_RESULT{"Persistence succeeded?"}
-    DB_RESULT -->|No| STORAGE_ERROR["Report storage failure"]
-    DB_RESULT -->|Yes| EVALUATE["Evaluate alert conditions"]
-    EVALUATE --> DONE["Return appropriate result"]
+    START["Unexpected result or failed check"] --> AREA{"Identify the affected layer"}
 
-    classDef decision fill:#312E81,stroke:#818CF8,color:#EEF2FF
-    classDef success fill:#052E2B,stroke:#34D399,color:#ECFDF5
-    classDef failure fill:#451A03,stroke:#F59E0B,color:#FFFBEB
+    AREA -->|Collector| COL["Inspect /proc access<br/>and collector output"]
+    AREA -->|API| API["Inspect routes,<br/>configuration, and logs"]
+    AREA -->|Database| DB["Inspect SQLite setup<br/>and persistence path"]
+    AREA -->|Alerts| ALERT["Inspect alert inputs<br/>and evaluation rules"]
 
-    class RESULT,FORMAT,DB_RESULT decision
-    class PERSIST,EVALUATE,DONE success
-    class PROCESS_ERROR,DATA_ERROR,STORAGE_ERROR failure
+    COL --> TEST["Reproduce the issue<br/>with a focused check"]
+    API --> TEST
+    DB --> TEST
+    ALERT --> TEST
+
+    TEST --> FIX["Apply a minimal change"]
+    FIX --> VERIFY["Rerun relevant checks"]
+    VERIFY --> DOC["Update documentation<br/>if behavior changed"]
+
+    classDef start fill:#3B1724,stroke:#FB7185,color:#FFF1F2,stroke-width:2px
+    classDef decision fill:#241B3B,stroke:#8B5CF6,color:#F8FAFC,stroke-width:2px
+    classDef action fill:#111C3B,stroke:#06B6D4,color:#F8FAFC,stroke-width:2px
+    classDef complete fill:#102A2A,stroke:#34D399,color:#F8FAFC,stroke-width:2px
+
+    class START start
+    class AREA decision
+    class COL,API,DB,ALERT,TEST,FIX action
+    class VERIFY,DOC complete
 ```
 
-| Failure mode | Expected engineering concern |
+## ◈ Security and responsible operation
+
+- Store private values in environment variables or untracked local configuration.
+- Keep `.env.example` limited to placeholders and safe defaults.
+- Review `SECURITY.md` before reporting a vulnerability.
+- Run collection code with only the permissions it needs.
+- Review published ports and persistent volumes before exposing containers beyond local development.
+- Protect collected host information according to the requirements of the environment where the project runs.
+
+## ◈ Improvement roadmap
+
+Potential improvements to consider as the implementation evolves:
+
+- [ ] Document metric names, units, and collection intervals.
+- [ ] Add concrete request and response examples for each endpoint.
+- [ ] Expand tests for malformed inputs and failure scenarios.
+- [ ] Document alert rules and threshold configuration.
+- [ ] Standardize structured logging and error responses.
+- [ ] Measure collector overhead and API response performance.
+- [ ] Document reproducible Linux, WSL2, and Docker workflows.
+- [ ] Record verified test results and supported runtime versions.
+
+## ◈ Project resources
+
+| Resource | Link |
 |---|---|
-| Collector timeout | Bound execution time |
-| Non-zero process exit | Capture and surface diagnostics |
-| Malformed output | Validate before processing |
-| Database failure | Handle errors and preserve consistency |
-| Alert threshold exceeded | Evaluate configured monitoring rules |
-| API request invalid | Return appropriate HTTP behavior |
-| CI check fails | Diagnose the failing stage before merging |
+| **Source repository** | [SysAtlas on GitHub](https://github.com/akankshad1712/sysatlas) |
+| **Engineering documentation** | [Browse `docs/`](https://github.com/akankshad1712/sysatlas/tree/main/docs) |
+| **Portfolio materials** | [Browse `portfolio/`](https://github.com/akankshad1712/sysatlas/tree/main/portfolio) |
+| **Issues and improvements** | [GitHub Issues](https://github.com/akankshad1712/sysatlas/issues) |
+| **Author profile** | [Akanksha Deshmukh on LinkedIn](https://www.linkedin.com/in/akanksha-deshmukh-26210b244/) |
+| **Other projects** | [GitHub profile](https://github.com/akankshad1712) |
 
-The diagram describes a recommended failure-analysis model. Verify that each branch is implemented and tested before presenting it as a guaranteed runtime behavior.
+## ◈ Author
 
-## 11 / Testing and CI/CD
+<div align="center">
 
-| Quality layer | Repository location | Verification goal |
-|---|---|---|
-| Python tests | `tests/test_app.py` | Exercise application behavior |
-| Collector tests | `collector/tests/test_collector.sh` | Check collector behavior |
-| Dependency installation | `requirements.txt` | Reproduce Python environment setup |
-| Container build | `Dockerfile` | Validate configured image construction |
-| Service configuration | `docker-compose.yml` | Validate the container workflow |
-| CI automation | `.github/workflows/ci.yml` | Execute the checks configured in CI |
+### Akanksha Deshmukh
 
-The CI workflow should be treated as evidence only for the commands it actually executes. A successful workflow is not, by itself, a production-readiness certification.
+**Software Engineer · Systems & Backend Engineering**
 
-## 12 / Security architecture
+Interested in building practical software with clear architecture, reliable behavior, testable components, and maintainable engineering workflows.
 
-Security considerations for this project include:
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/akanksha-deshmukh-26210b244/)
+[![GitHub](https://img.shields.io/badge/GitHub-Explore%20Projects-111827?style=for-the-badge&logo=github&logoColor=white)](https://github.com/akankshad1712)
 
-- Keep real secrets out of source control.
-- Use `.env.example` for placeholders, never live credentials.
-- Avoid shell-based command construction where direct subprocess execution is appropriate.
-- Bound process time and output.
-- Validate data crossing component boundaries.
-- Review API exposure before making the service publicly accessible.
-- Check container privileges and filesystem access.
-- Review dependency versions and database handling.
-
-Related documentation:
-
-| Document | Focus |
-|---|---|
-| `SECURITY.md` | Project security guidance |
-| `docs/THREAT_MODEL.md` | Threat analysis |
-| `docs/SECURITY_ARCHITECTURE.md` | Security design |
-| `docs/engineering/SECURITY_REVIEW.md` | Security review material |
-| `docs/engineering/RISK_REGISTER.md` | Risk tracking |
-
-## 13 / Engineering decision records
-
-The engineering documentation is intended to make design choices understandable and reviewable.
-
-| Document | Engineering question |
-|---|---|
-| `docs/engineering/ADR-001-local-sqlite.md` | Why use local SQLite persistence? |
-| `docs/engineering/ADR-002-c-collector.md` | Why use a native C collector? |
-| `docs/engineering/SYSTEM_DESIGN.md` | How is the system organized? |
-| `docs/engineering/ARCHITECTURE_EVOLUTION.md` | How might the architecture evolve? |
-| `docs/engineering/SCALABILITY_ANALYSIS.md` | What limits scaling? |
-| `docs/engineering/PERFORMANCE_REPORT.md` | What performance evidence exists? |
-| `docs/engineering/TECHNICAL_DEBT.md` | What trade-offs or limitations remain? |
-| `docs/engineering/OPERABILITY_REVIEW.md` | How should operational behavior be reviewed? |
-
-Keep measured results, proposed improvements, and assumptions clearly distinguished in these documents.
-
-## 14 / Development roadmap
-
-- [ ] Verify the documented startup process from a clean environment.
-- [ ] Publish passing application and collector test results.
-- [ ] Add a genuine screenshot of the running dashboard, if available.
-- [ ] Document concrete request and response examples.
-- [ ] Measure collector latency and persistence behavior.
-- [ ] Add reproducible performance tests.
-- [ ] Validate container security and resource limits.
-- [ ] Establish a clear retention strategy for stored metrics.
-- [ ] Document known limitations and future architectural options.
-
-These are improvement opportunities, not claims that the features are already complete.
-
-## 15 / About the author
-
-<p align="center">
-  <strong>AKANKSHA DESHMUKH</strong>
-  <br/>
-  Software Engineer · Computer Engineering
-  <br/><br/>
-  <a href="https://www.linkedin.com/in/akanksha-deshmukh-26210b244/">
-    <img src="https://img.shields.io/badge/LINKEDIN-LET'S%20CONNECT-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Akanksha Deshmukh on LinkedIn"/>
-  </a>
-  <a href="https://github.com/akankshad1712">
-    <img src="https://img.shields.io/badge/GITHUB-EXPLORE%20MY%20WORK-111827?style=for-the-badge&logo=github&logoColor=white" alt="Akanksha Deshmukh on GitHub"/>
-  </a>
-</p>
-
-SysAtlas is my engineering portfolio project for exploring systems programming, backend APIs, persistence, automated testing, and reliability-focused design.
-
-My focus is on building understandable systems, documenting technical trade-offs, validating behavior, and continuously improving engineering quality.
-
-## 16 / Explore the project
-
-| Resource | Destination |
-|---|---|
-| Source code | [SysAtlas repository](https://github.com/akankshad1712/sysatlas) |
-| Engineering documentation | [Documentation directory](https://github.com/akankshad1712/sysatlas/tree/main/docs) |
-| Portfolio materials | [Portfolio directory](https://github.com/akankshad1712/sysatlas/tree/main/portfolio) |
-| Professional profile | [Akanksha Deshmukh on LinkedIn](https://www.linkedin.com/in/akanksha-deshmukh-26210b244/) |
+</div>
 
 ---
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=130&section=footer&color=0:06B6D4,50:3730A3,100:070B16" width="100%" alt="SysAtlas footer"/>
-  <strong>SYSATLAS · ENGINEERED WITH INTENT</strong>
-  <br/>
-  <sub>Observe deeply. Design deliberately. Build reliably.</sub>
-</p>
+<div align="center">
+
+**SysAtlas** · A personal engineering project by **Akanksha Deshmukh**
+
+*From Linux telemetry to understandable, testable service behavior.*
+
+</div>
