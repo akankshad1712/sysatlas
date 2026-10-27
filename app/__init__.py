@@ -1,0 +1,1 @@
+"""SysAtlas Omega application package."""

@@ -1,0 +1,18 @@
+services:
+  sysatlas:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      SYSATLAS_DATABASE: /data/sysatlas.db
+      SYSATLAS_COLLECTOR: /usr/local/bin/sysatlas-collector
+    volumes:
+      - sysatlas-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+volumes:
+  sysatlas-data:
