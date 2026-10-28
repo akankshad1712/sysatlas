@@ -1,4 +1,4 @@
- <div align="center">
+<div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=rect&height=220&text=SysAtlas&fontSize=76&fontColor=F8FAFC&desc=SYSTEMS%20RELIABILITY%20%2F%20OBSERVABILITY%20PLATFORM&descSize=16&descAlignY=70&color=0:070B16,45:111C3B,100:312E81&animation=fadeIn" alt="SysAtlas — Systems Reliability and Observability Platform" width="100%">
 
